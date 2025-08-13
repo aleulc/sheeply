@@ -5,15 +5,37 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const allowedOrigins = [
+    'http://localhost:3001',
+  'http://localhost:3000',
+  'http://sheeply.online',
+  'http://www.sheeply.online'
+];
+
 // 1. Middlewares básicos
-app.use(cors({
-  origin: 'http://localhost:3000', // Asegurar que coincide con tu frontend
+/*app.use(cors({
+  origin: 'http://localhost:3000', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 app.use(bodyParser.json());
-app.use(express.json());
+app.use(express.json());*/
+
+app.use(cors({
+  origin: function(origin, callback) {
+    // allow requests like curl/postman with no origin
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('CORS: Origin not allowed'), false);
+    }
+  },
+  methods: ['GET','POST','PUT','DELETE','PATCH','OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization'],
+  credentials: true
+}));
 
 // 2. Importar rutas
 const authRoutes = require('./routes/auth');
