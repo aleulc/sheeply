@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: 'http://sheeply.online/api',
 });
+
 
 // Interceptor para agregar token a todas las peticiones
 api.interceptors.request.use(config => {
