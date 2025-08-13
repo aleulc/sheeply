@@ -20,7 +20,7 @@ const allowedOrigins = [
   credentials: true
 }));
 app.use(bodyParser.json());
-app.use(express.json());*/
+*/
 
 app.use(cors({
   origin: function(origin, callback) {
@@ -36,6 +36,8 @@ app.use(cors({
   allowedHeaders: ['Content-Type','Authorization'],
   credentials: true
 }));
+
+app.use(express.json());
 
 // 2. Importar rutas
 const authRoutes = require('./routes/auth');
