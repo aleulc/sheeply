@@ -8,8 +8,9 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
     'http://localhost:3001',
   'http://localhost:3000',
-  'http://sheeply.online',
-  'http://www.sheeply.online'
+  'http://sheeplydemo.online',
+  'https://sheeplydemo.online',   
+  'http://www.sheeplydemo.online'
 ];
 
 // 1. Middlewares básicos
